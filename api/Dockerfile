@@ -1,5 +1,6 @@
 FROM python:3.7.4-slim
 
+
 ENV PIP_DISABLE_PIP_VERSION_CHECK=on
 
 RUN pip install poetry==0.12.17
