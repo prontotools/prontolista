@@ -8,6 +8,6 @@ COPY poetry.lock pyproject.toml /
 RUN poetry config settings.virtualenvs.create false
 RUN poetry install --no-interaction
 COPY . /app/
-COPY docker-entrypoint.sh /
+COPY compose/django/docker-entrypoint-local.sh /docker-entrypoint.sh
 WORKDIR /app
 RUN chmod +x /docker-entrypoint.sh
