@@ -1,0 +1,24 @@
+version: '3.7'
+
+services:
+  db:
+    image: postgres:12.0-alpine
+    environment:
+      - POSTGRES_DB=prontolista
+      - POSTGRES_USER=prontolista
+    volumes:
+      - postgres-data-local:/var/lib/postgresql/data
+
+  app:
+    image: prontolista
+    build:
+      context: .
+      dockerfile: compose/django/Dockerfile-local
+    ports:
+      - 8000:8000
+    volumes:
+      - .:/app
+    entrypoint: /docker-entrypoint.sh
+
+volumes:
+  postgres-data-local:
