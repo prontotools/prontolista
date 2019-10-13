@@ -23,17 +23,14 @@ jobs:
       - run:
           name: Run Static Analysis
           command: |
-            cd api
             poetry run flake8 prontolista
       - run:
           name: Run Type Checker
           command: |
-            cd api
             poetry run mypy prontolista
       - run:
           name: Run Tests
           command: |
-            cd api
             poetry run pytest prontolista
 
 workflows:
