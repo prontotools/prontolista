@@ -1,6 +1,6 @@
 languages:
   - python
-component_depth: 2
+component_depth: 3
 exclude:
   - .*/migrations/.*
   - .*/settings/.*
