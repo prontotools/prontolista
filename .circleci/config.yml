@@ -2,7 +2,7 @@ version: 2
 
 jobs:
   build-and-test:
-    working_directory: ~/prontolista/prontolista
+    working_directory: ~/prontolista/api
     docker:
       - image: circleci/python:3.7.4
       - image: circleci/postgres:12.0-alpine
