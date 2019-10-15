@@ -7,6 +7,8 @@ authors = ["Pronto Tools <prontotools@prontomarketing.com>"]
 [tool.poetry.dependencies]
 python = "^3.7"
 ansible = "^2.8"
+jinja2 = "^2.10"
+pyyaml = "^5.1"
 
 [tool.poetry.dev-dependencies]
 
