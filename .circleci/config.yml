@@ -14,6 +14,7 @@ jobs:
     steps:
       - checkout:
           path: ~/prontolista
+      - setup_remote_docker
       - restore_cache:
           keys:
             - deps-{{ checksum "poetry.lock" }}
@@ -37,6 +38,11 @@ jobs:
           name: Run Tests
           command: |
             poetry run pytest prontolista
+      - run:
+          name: Build Dev Image
+          command: |
+            poetry add awscli
+            ~/prontolista/.circleci/build-and-push-dev-images.sh
 
 workflows:
   version: 2
