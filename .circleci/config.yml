@@ -43,6 +43,9 @@ jobs:
           command: |
             poetry add awscli
             ~/prontolista/.circleci/build-and-push-dev-images.sh
+      - add_ssh_keys:
+          fingerprints:
+            - "91:ad:82:9c:13:3a:1c:a4:3c:3f:da:b5:67:1a:5b:fb"
       - run:
           name: Deploy Dev
           command: |
