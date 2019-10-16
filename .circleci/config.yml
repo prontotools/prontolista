@@ -43,6 +43,11 @@ jobs:
           command: |
             poetry add awscli
             ~/prontolista/.circleci/build-and-push-dev-images.sh
+      - run:
+          name: Deploy Dev
+          command: |
+            cd ~/prontolista/ansible
+            ./deploy.sh
 
 workflows:
   version: 2
