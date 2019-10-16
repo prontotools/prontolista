@@ -39,7 +39,7 @@ jobs:
           command: |
             poetry run pytest prontolista
       - run:
-          name: Build Dev Image
+          name: Build Dev Images
           command: |
             poetry add awscli
             ~/prontolista/.circleci/build-and-push-dev-images.sh
@@ -52,6 +52,24 @@ jobs:
             cd ~/prontolista/ansible
             poetry install
             ./deploy.sh
+      - run:
+          name: Run Acceptance Tests
+          command: |
+            echo 'acceptance'
+      - run:
+          name: Build Production Images
+          command: |
+            poetry add awscli
+            ~/prontolista/.circleci/build-and-push-production-images.sh
+      - add_ssh_keys:
+          fingerprints:
+            - "a8:33:98:80:3c:d7:90:0d:f0:2f:18:57:80:06:6b:77"
+      - run:
+          name: Deploy Production
+          command: |
+            cd ~/prontolista/ansible
+            poetry install
+            ./deploy-production.sh
 
 workflows:
   version: 2
