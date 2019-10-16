@@ -59,7 +59,6 @@ jobs:
       - run:
           name: Build Production Images
           command: |
-            poetry add awscli
             ~/prontolista/.circleci/build-and-push-production-images.sh
       - add_ssh_keys:
           fingerprints:
@@ -68,7 +67,6 @@ jobs:
           name: Deploy Production
           command: |
             cd ~/prontolista/ansible
-            poetry install
             ./deploy-production.sh
 
 workflows:
