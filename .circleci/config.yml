@@ -47,6 +47,7 @@ jobs:
           name: Deploy Dev
           command: |
             cd ~/prontolista/ansible
+            poetry install
             ./deploy.sh
 
 workflows:
