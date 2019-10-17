@@ -41,35 +41,45 @@ jobs:
       - run:
           name: Build Dev Images
           command: |
-            poetry add awscli
-            ~/prontolista/.circleci/build-and-push-dev-images.sh
+            if [ "$CIRCLE_BRANCH" = "develop" ]; then
+              poetry add awscli
+              ~/prontolista/.circleci/build-and-push-dev-images.sh
+            fi
       - add_ssh_keys:
           fingerprints:
             - "91:ad:82:9c:13:3a:1c:a4:3c:3f:da:b5:67:1a:5b:fb"
       - run:
           name: Deploy Dev
           command: |
-            cd ~/prontolista/ansible
-            poetry install
-            ./deploy.sh
+            if [ "$CIRCLE_BRANCH" = "develop" ]; then
+              cd ~/prontolista/ansible
+              poetry install
+              ./deploy.sh
+            fi
       - run:
           name: Run Acceptance Tests
           command: |
-            cd ~/prontolista/tests
-            yarn install
-            ./node_modules/.bin/cypress run --spec cypress/integration/projects.spec.js
+            if [ "$CIRCLE_BRANCH" = "develop" ]; then
+              cd ~/prontolista/tests
+              yarn install
+              ./node_modules/.bin/cypress run --spec cypress/integration/projects.spec.js
+            fi
       - run:
           name: Build Production Images
           command: |
-            ~/prontolista/.circleci/build-and-push-production-images.sh
+            if [ "$CIRCLE_BRANCH" = "master" ]; then
+              ~/prontolista/.circleci/build-and-push-production-images.sh
+            fi
       - add_ssh_keys:
           fingerprints:
             - "a8:33:98:80:3c:d7:90:0d:f0:2f:18:57:80:06:6b:77"
       - run:
           name: Deploy Production
           command: |
-            cd ~/prontolista/ansible
-            ./deploy-production.sh
+            if [ "$CIRCLE_BRANCH" = "master" ]; then
+              cd ~/prontolista/ansible
+              ./deploy-production.sh
+            fi
 
 workflows:
   version: 2
