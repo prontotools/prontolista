@@ -11,6 +11,7 @@ jobs:
         environment:
           POSTGRES_USER: prontolista
           POSTGRES_DB: prontolista
+      - image: circleci/node:8.14-browsers
     steps:
       - checkout:
           path: ~/prontolista
@@ -55,7 +56,9 @@ jobs:
       - run:
           name: Run Acceptance Tests
           command: |
-            echo 'acceptance'
+            cd ~/prontolista/tests
+            npm install
+            ./node_modules/.bin/cypress run --spec cypress/integration/projects.spec.js
       - run:
           name: Build Production Images
           command: |
