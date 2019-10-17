@@ -4,14 +4,13 @@ jobs:
   build-and-test:
     working_directory: ~/prontolista/api
     docker:
-      - image: circleci/python:3.7.4
+      - image: circleci/python:3.7.4-node
         environment:
           DATABASE_HOST: localhost
       - image: circleci/postgres:12.0-alpine
         environment:
           POSTGRES_USER: prontolista
           POSTGRES_DB: prontolista
-      - image: circleci/node:8.14-browsers
     steps:
       - checkout:
           path: ~/prontolista
@@ -57,7 +56,7 @@ jobs:
           name: Run Acceptance Tests
           command: |
             cd ~/prontolista/tests
-            npm install
+            yarn install
             ./node_modules/.bin/cypress run --spec cypress/integration/projects.spec.js
       - run:
           name: Build Production Images
