@@ -9,3 +9,5 @@ class ProjectTest(TestCase):
         project = Project.objects.create(name=expected_name)
 
         assert project.name == expected_name
+        assert project.created
+        assert project.modified
