@@ -16,3 +16,9 @@ class ProjectAdminTest(TestCase):
             'modified',
         )
         assert ProjectAdmin.list_display == expected
+
+    def test_admin_should_set_search_fields(self):
+        expected = (
+            'name',
+        )
+        assert ProjectAdmin.search_fields == expected

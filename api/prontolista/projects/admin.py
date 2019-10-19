@@ -10,3 +10,6 @@ class ProjectAdmin(admin.ModelAdmin):
         'created',
         'modified',
     )
+    search_fields = (
+        'name',
+    )
