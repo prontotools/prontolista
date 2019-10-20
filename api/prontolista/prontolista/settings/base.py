@@ -32,6 +32,7 @@ DJANGO_APPS = [
 ]
 
 THIRD_PARTY_APPS = [
+    'waffle',
 ]
 
 LOCAL_APPS = [
@@ -48,6 +49,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'waffle.middleware.WaffleMiddleware',
 ]
 
 ROOT_URLCONF = 'prontolista.urls'
