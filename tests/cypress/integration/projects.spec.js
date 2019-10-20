@@ -36,4 +36,17 @@ context('Projects', () => {
     cy.get(':nth-child(1) > .field-name > a')
       .should('have.text', `Edit Project ${random_string}`)
   })
+
+  it('should be able to search a project', () => {
+    cy.get('div.app-projects a.addlink')
+      .click()
+    cy.get('#id_name')
+      .type(`Test New Project ${random_string}`)
+    cy.get('input.default')
+      .click()
+    cy.get('#searchbar')
+      .type(random_string)
+    cy.get(':nth-child(1) > .field-name > a')
+      .should('have.text', `Test New Project ${random_string}`)
+  })
 })
