@@ -5,11 +5,6 @@ from .models import TestCase
 
 @admin.register(TestCase)
 class TestCaseAdmin(admin.ModelAdmin):
-    list_display = (
-        'id',
-        'name',
-        'project',
-    )
-    search_fields = (
-        'name',
-    )
+    list_display = ("id", "name", "project")
+    list_filter = ("project",)
+    search_fields = ("name",)
