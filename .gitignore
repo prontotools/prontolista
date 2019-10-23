@@ -3,6 +3,3 @@
 
 # PyCharm
 .idea
-
-# Node
-web/node_modules/*
