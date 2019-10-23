@@ -68,6 +68,7 @@ jobs:
           name: Build Production Images
           command: |
             if [ "$CIRCLE_BRANCH" = "master" ]; then
+              poetry add awscli
               ~/prontolista/.circleci/build-and-push-production-images.sh
             fi
       - add_ssh_keys:
@@ -78,6 +79,7 @@ jobs:
           command: |
             if [ "$CIRCLE_BRANCH" = "master" ]; then
               cd ~/prontolista/ansible
+              poetry install
               ./deploy-production.sh
             fi
 
