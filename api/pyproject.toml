@@ -1,0 +1,25 @@
+[tool.poetry]
+name = "api"
+version = "0.1.0"
+description = ""
+authors = ["Pronto Tools <prontotools@prontomarketing.com>"]
+license = "MIT"
+
+[tool.poetry.dependencies]
+python = "^3.7"
+django = "^2.2"
+psycopg2 = "^2.8"
+sentry-sdk = "^0.12.3"
+django-extensions = "^2.2"
+django-waffle = "=0.17.0"
+
+[tool.poetry.dev-dependencies]
+pytest-django = "^3.5"
+pytest-cov = "^2.8"
+black = {version = "^18.3-alpha.0", allows-prereleases = true}
+isort = "^4.3"
+flake8 = "^3.7"
+mypy = "^0.730.0"
+[build-system]
+requires = ["poetry>=0.12"]
+build-backend = "poetry.masonry.api"

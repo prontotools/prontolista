@@ -1,0 +1,19 @@
+---
+- name: install awscli
+  become: yes
+  apt: name=awscli
+
+- name: init aws config
+  file:
+    path: /home/{{ username }}/.aws
+    state: directory
+
+- name: copy config
+  copy:
+    src: rocket-aws-config
+    dest: /home/{{ username }}/.aws/config
+
+- name: copy aws credentials
+  copy:
+    src: rocket-aws-credentials
+    dest: /home/{{ username }}/.aws/credentials

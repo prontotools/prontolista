@@ -1,0 +1,88 @@
+version: 2
+
+jobs:
+  build-and-test:
+    working_directory: ~/prontolista/api
+    docker:
+      - image: circleci/python:3.7.4-node-browsers
+        environment:
+          DATABASE_HOST: localhost
+      - image: circleci/postgres:12.0-alpine
+        environment:
+          POSTGRES_USER: prontolista
+          POSTGRES_DB: prontolista
+    steps:
+      - checkout:
+          path: ~/prontolista
+      - setup_remote_docker
+      - restore_cache:
+          keys:
+            - deps-{{ checksum "poetry.lock" }}
+      - run:
+          name: Install Dependencies
+          command: |
+            poetry install
+      - save_cache:
+          key: deps-{{ checksum "poetry.lock" }}
+          paths:
+            - /home/circleci/.cache/pypoetry/virtualenvs
+      - run:
+          name: Run Static Analysis
+          command: |
+            poetry run flake8 prontolista
+      - run:
+          name: Run Type Checker
+          command: |
+            poetry run mypy prontolista
+      - run:
+          name: Run Tests
+          command: |
+            poetry run pytest prontolista
+      - run:
+          name: Build Dev Images
+          command: |
+            if [ "$CIRCLE_BRANCH" = "develop" ]; then
+              poetry add awscli
+              ~/prontolista/.circleci/build-and-push-dev-images.sh
+            fi
+      - add_ssh_keys:
+          fingerprints:
+            - "91:ad:82:9c:13:3a:1c:a4:3c:3f:da:b5:67:1a:5b:fb"
+      - run:
+          name: Deploy Dev
+          command: |
+            if [ "$CIRCLE_BRANCH" = "develop" ]; then
+              cd ~/prontolista/ansible
+              poetry install
+              ./deploy.sh
+            fi
+      - run:
+          name: Run Acceptance Tests
+          command: |
+            if [ "$CIRCLE_BRANCH" = "develop" ]; then
+              cd ~/prontolista/tests
+              yarn install
+              ./node_modules/.bin/cypress run --spec cypress/integration/projects.spec.js
+            fi
+      - run:
+          name: Build Production Images
+          command: |
+            if [ "$CIRCLE_BRANCH" = "master" ]; then
+              ~/prontolista/.circleci/build-and-push-production-images.sh
+            fi
+      - add_ssh_keys:
+          fingerprints:
+            - "a8:33:98:80:3c:d7:90:0d:f0:2f:18:57:80:06:6b:77"
+      - run:
+          name: Deploy Production
+          command: |
+            if [ "$CIRCLE_BRANCH" = "master" ]; then
+              cd ~/prontolista/ansible
+              ./deploy-production.sh
+            fi
+
+workflows:
+  version: 2
+  build-and-test-workflow:
+    jobs:
+      - build-and-test

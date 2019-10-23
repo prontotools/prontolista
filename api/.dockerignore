@@ -1,0 +1,6 @@
+.env
+poetry.lock
+.coverage
+.mypy_cache
+.pytest_cache
+htmlcov

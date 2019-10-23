@@ -1,0 +1,16 @@
+---
+- name: copy compose file to server
+  copy:
+    src: "docker-compose.dev.yml"
+    dest: /home/{{ username }}/docker-compose.yml
+
+- name: copy env file
+  copy:
+    src: env-dev
+    dest: /home/{{ username }}/.env
+
+- name: login to aws
+  command: bash -c "$(aws ecr get-login --region eu-west-1 --no-include-email)"
+
+- name: deploy
+  command: bash -c "TAG={{ tag }} docker-compose up -d"
