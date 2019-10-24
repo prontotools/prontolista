@@ -6,5 +6,8 @@ eval $(poetry run aws ecr get-login --no-include-email --region eu-west-1 --prof
 
 export GIT_COMMIT_SHORT=$(echo $CIRCLE_SHA1 | cut -c 1-8)
 
+docker build -f compose/nginx/Dockerfile -t 133506877714.dkr.ecr.eu-west-1.amazonaws.com/prontolista-nginx:$GIT_COMMIT_SHORT ./compose/nginx
+docker push 133506877714.dkr.ecr.eu-west-1.amazonaws.com/prontolista-nginx:$GIT_COMMIT_SHORT
+
 docker build -f compose/django/Dockerfile-production -t 133506877714.dkr.ecr.eu-west-1.amazonaws.com/prontolista:$GIT_COMMIT_SHORT .
 docker push 133506877714.dkr.ecr.eu-west-1.amazonaws.com/prontolista:$GIT_COMMIT_SHORT
