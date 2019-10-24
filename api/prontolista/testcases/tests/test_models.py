@@ -2,8 +2,8 @@ from django.test import TestCase
 
 from model_mommy import mommy
 
-from projects.models import Project
 from ..models import TestCase as TestCaseModel
+from projects.models import Project
 
 
 class TestCaseModelTest(TestCase):
