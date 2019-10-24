@@ -62,7 +62,7 @@ jobs:
             if [ "$CIRCLE_BRANCH" = "develop" ]; then
               cd ~/prontolista/tests
               yarn install
-              ./node_modules/.bin/cypress run --spec cypress/integration/projects.spec.js
+              ./node_modules/.bin/cypress run --env superuser_username=$CYPRESS_SUPERUSER_USERNAME,superuser_password=$CYPRESS_SUPERUSER_PASSWORD --spec cypress/integration/*
             fi
       - run:
           name: Build Production Images

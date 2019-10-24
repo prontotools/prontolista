@@ -23,3 +23,23 @@
 //
 // -- This is will overwrite an existing command --
 // Cypress.Commands.overwrite("visit", (originalFn, url, options) => { ... })
+
+Cypress.Commands.add('login', () => {
+  const username = Cypress.env('superuser_username')
+  const password = Cypress.env('superuser_password')
+
+  cy.visit('http://34.248.52.210:8000/admin/')
+  cy.get('#id_username').type(username)
+  cy.get('#id_password').type(password)
+  cy.get('#login-form').submit()
+})
+
+export const generate_random_string = string_length => {
+  let random_string = ''
+  let random_ascii
+  for (let i = 0; i < string_length; i++) {
+    random_ascii = Math.floor(Math.random() * 25 + 97)
+    random_string += String.fromCharCode(random_ascii)
+  }
+  return random_string
+}
