@@ -1,4 +1,5 @@
 import os
+from typing import List
 
 import sentry_sdk
 from sentry_sdk.integrations.django import DjangoIntegration
@@ -17,12 +18,12 @@ SECRET_KEY = ')sgl(s9vi^o21&3h-!q*bc)b=qa4+s7j+a-odgg0gc)^k5#scu'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS: List[str] = []
 
 
 # Application definition
 
-DJANGO_APPS = [
+DJANGO_APPS: List[str] = [
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -31,11 +32,11 @@ DJANGO_APPS = [
     'django.contrib.staticfiles',
 ]
 
-THIRD_PARTY_APPS = [
+THIRD_PARTY_APPS: List[str] = [
     'waffle',
 ]
 
-LOCAL_APPS = [
+LOCAL_APPS: List[str] = [
     'projects',
     'testcases',
 ]
@@ -130,7 +131,7 @@ STATIC_URL = '/static/'
 
 # Sentry SDK Configuration
 
-sentry_sdk.init(
+sentry_sdk.init(  # type: ignore
     dsn=os.environ.get('SENTRY_DSN', ''),
     integrations=[DjangoIntegration()],
     environment=os.environ.get('SENTRY_ENVIRONMENT', 'local')
