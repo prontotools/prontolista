@@ -66,4 +66,17 @@ context('Testcases', () => {
     cy.get(':nth-child(1) > .field-name')
       .should('have.text', `Test New Test case ${random_string}`)
   })
+
+  it('should be able to filter test case by project', () => {
+    cy.get('div.app-testcases a.addlink')
+      .click()
+    cy.get('#id_name')
+      .type(`Test New Test case ${random_string}`)
+    cy.get('#id_project')
+      .select(project_name)
+    cy.get('input.default')
+      .click()
+    cy.contains(project_name)
+      .click()
+  })
 })
