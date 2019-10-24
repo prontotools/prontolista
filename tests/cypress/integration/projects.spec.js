@@ -1,7 +1,7 @@
 import { generate_random_string } from '../support/commands.js'
 
 context('Projects', () => {
-  var random_string
+  let random_string
 
   beforeEach(() => {
     random_string = generate_random_string(5)
