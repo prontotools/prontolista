@@ -4,6 +4,7 @@ context('Projects', () => {
   let random_string
 
   beforeEach(() => {
+    cy.clearCookies()
     random_string = generate_random_string(5)
     cy.login()
   })
