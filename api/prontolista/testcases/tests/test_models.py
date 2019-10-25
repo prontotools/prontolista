@@ -24,3 +24,10 @@ class TestCaseModelTest(TestCase):
         assert actual.project.name == expected_project_name
         assert actual.created
         assert actual.modified
+
+    def test_model_should_get_name_as_string_representation(self):
+        project = mommy.make(Project)
+        expected_name = "Breadcrumb : click breadcrumb link"
+        actual = TestCaseModel.objects.create(name=expected_name, project=project)
+
+        assert actual.__str__() == expected_name
