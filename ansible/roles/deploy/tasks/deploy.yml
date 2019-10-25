@@ -1,7 +1,7 @@
 ---
 - name: copy compose file to server
   copy:
-    src: "docker-compose.dev.yml"
+    src: "{{ docker_compose_file }}"
     dest: /home/{{ username }}/docker-compose.yml
 
 - name: copy env file
