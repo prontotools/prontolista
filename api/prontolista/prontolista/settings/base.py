@@ -34,7 +34,7 @@ DJANGO_APPS: List[str] = [
 
 THIRD_PARTY_APPS: List[str] = ["waffle"]
 
-LOCAL_APPS: List[str] = ["projects", "testcases", "testruns"]
+LOCAL_APPS: List[str] = ["projects", "testcases", "testruns", "test_instances"]
 
 INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
 
