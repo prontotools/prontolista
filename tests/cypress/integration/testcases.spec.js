@@ -5,6 +5,7 @@ context('Testcases', () => {
   let project_name
 
   beforeEach(() => {
+    cy.clearCookies()
     random_string = generate_random_string(5)
     project_name = `Test New Project ${random_string}`
     cy.login()
