@@ -1,8 +1,9 @@
 from django.contrib import admin
 from django.test import TestCase
 
-from ..admin import TestRunAdmin
+from ..admin import TestInstanceInline, TestRunAdmin
 from ..models import TestRun
+from test_instances.models import TestInstance
 
 
 class TestRunAdminTest(TestCase):
@@ -23,3 +24,13 @@ class TestRunAdminTest(TestCase):
         expected = ("name",)
 
         assert TestRunAdmin.search_fields == expected
+
+    def test_admin_should_set_inlines(self):
+        expected = [TestInstanceInline]
+
+        assert TestRunAdmin.inlines == expected
+
+
+class TestInstanceInlineTest(TestCase):
+    def test_inline_should_set_model(self):
+        assert TestInstanceInline.model == TestInstance
