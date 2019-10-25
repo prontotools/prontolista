@@ -4,6 +4,7 @@ context('Projects', () => {
   let random_string
 
   beforeEach(() => {
+    cy.clearCookies()
     random_string = generate_random_string(5)
     cy.login()
   })
@@ -46,6 +47,8 @@ context('Projects', () => {
       .click()
     cy.get('#searchbar')
       .type(random_string)
+    cy.get('#changelist-search > div > [type="submit"]')
+      .click()
     cy.get(':nth-child(1) > .field-name > a')
       .should('have.text', `Test New Project ${random_string}`)
   })
