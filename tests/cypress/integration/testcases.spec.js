@@ -5,6 +5,8 @@ context('Testcases', () => {
   let project_name
 
   beforeEach(() => {
+    const baseUrl = Cypress.config().baseUrl
+
     cy.clearCookies()
     random_string = generate_random_string(5)
     project_name = `Test New Project ${random_string}`
@@ -15,7 +17,7 @@ context('Testcases', () => {
       .type(project_name)
     cy.get('input.default')
       .click()
-    cy.visit('http://34.248.52.210:8000/admin/')
+    cy.visit(baseUrl)
   })
 
   it('should be able to create a new test case', () => {
