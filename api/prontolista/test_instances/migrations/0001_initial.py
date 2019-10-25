@@ -9,25 +9,59 @@ class Migration(migrations.Migration):
 
     initial = True
 
-    dependencies = [
-        ('testcases', '0001_initial'),
-    ]
+    dependencies = [("testcases", "0001_initial")]
 
     operations = [
         migrations.CreateModel(
-            name='TestInstance',
+            name="TestInstance",
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('created', django_extensions.db.fields.CreationDateTimeField(auto_now_add=True, verbose_name='created')),
-                ('modified', django_extensions.db.fields.ModificationDateTimeField(auto_now=True, verbose_name='modified')),
-                ('assignee', models.CharField(blank=True, max_length=300, null=True)),
-                ('status', models.CharField(blank=True, choices=[('passed', 'Passed'), ('blocked', 'Blocked'), ('failed', 'Failed')], max_length=300, null=True)),
-                ('testcase', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='testcases.TestCase')),
+                (
+                    "id",
+                    models.AutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                (
+                    "created",
+                    django_extensions.db.fields.CreationDateTimeField(
+                        auto_now_add=True, verbose_name="created"
+                    ),
+                ),
+                (
+                    "modified",
+                    django_extensions.db.fields.ModificationDateTimeField(
+                        auto_now=True, verbose_name="modified"
+                    ),
+                ),
+                ("assignee", models.CharField(blank=True, max_length=300, null=True)),
+                (
+                    "status",
+                    models.CharField(
+                        blank=True,
+                        choices=[
+                            ("passed", "Passed"),
+                            ("blocked", "Blocked"),
+                            ("failed", "Failed"),
+                        ],
+                        max_length=300,
+                        null=True,
+                    ),
+                ),
+                (
+                    "testcase",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        to="testcases.TestCase",
+                    ),
+                ),
             ],
             options={
-                'ordering': ('-modified', '-created'),
-                'get_latest_by': 'modified',
-                'abstract': False,
+                "ordering": ("-modified", "-created"),
+                "get_latest_by": "modified",
+                "abstract": False,
             },
-        ),
+        )
     ]
