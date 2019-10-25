@@ -6,16 +6,17 @@ import django.db.models.deletion
 
 class Migration(migrations.Migration):
 
-    dependencies = [
-        ('testruns', '0001_initial'),
-        ('test_instances', '0001_initial'),
-    ]
+    dependencies = [("testruns", "0001_initial"), ("test_instances", "0001_initial")]
 
     operations = [
         migrations.AddField(
-            model_name='testinstance',
-            name='testrun',
-            field=models.ForeignKey(default=0, on_delete=django.db.models.deletion.CASCADE, to='testruns.TestRun'),
+            model_name="testinstance",
+            name="testrun",
+            field=models.ForeignKey(
+                default=0,
+                on_delete=django.db.models.deletion.CASCADE,
+                to="testruns.TestRun",
+            ),
             preserve_default=False,
-        ),
+        )
     ]
