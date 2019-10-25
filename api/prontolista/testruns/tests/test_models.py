@@ -16,3 +16,10 @@ class TestRunTest(TestCase):
         assert actual.project.name == project.name
         assert actual.created
         assert actual.modified
+
+    def test_model_should_get_name_as_string_representation(self):
+        project = baker.make(Project)
+        expected_name = "Upgrade wordpress dependencies"
+        actual = TestRun.objects.create(name=expected_name, project=project)
+
+        assert actual.__str__() == expected_name
