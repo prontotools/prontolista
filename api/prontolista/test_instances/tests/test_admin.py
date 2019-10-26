@@ -10,7 +10,7 @@ class TestInstanceAdminTest(TestCase):
         assert isinstance(admin.site._registry[TestInstance], TestInstanceAdmin)
 
     def test_admin_should_set_list_display(self):
-        expected = ("id", "testcase", "assignee", "status")
+        expected = ("id", "testcase", "testrun", "assignee", "status")
 
         assert TestInstanceAdmin.list_display == expected
 
@@ -18,3 +18,8 @@ class TestInstanceAdminTest(TestCase):
         expected = ("assignee",)
 
         assert TestInstanceAdmin.search_fields == expected
+
+    def test_admin_should_set_list_filter(self):
+        expected = ("testrun",)
+
+        assert TestInstanceAdmin.list_filter == expected
