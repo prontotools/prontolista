@@ -18,3 +18,8 @@ class TestInstanceAdminTest(TestCase):
         expected = ("assignee",)
 
         assert TestInstanceAdmin.search_fields == expected
+
+    def test_admin_should_set_list_filter(self):
+        expected = ("testrun",)
+
+        assert TestInstanceAdmin.list_filter == expected
