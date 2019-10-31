@@ -1,6 +1,6 @@
 import { generate_random_string } from '../support/commands.js'
 
-context('Testcases', () => {
+context('Test Instances', () => {
   let random_string
   let project_name
   let testcase_name
@@ -82,7 +82,7 @@ context('Testcases', () => {
       .select('passed')
     cy.get('input.default')
       .click()
-    cy.get(':nth-child(1) > .field-id > a')
+    cy.get(':nth-child(1) > .field-testcase > a')
       .click()
     cy.get('#id_assignee')
       .clear()
