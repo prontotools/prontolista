@@ -23,9 +23,7 @@ ALLOWED_HOSTS: List[str] = []
 
 # Application definition
 
-DJANGO_SUIT: List[str] = [
-    "suit",
-]
+DJANGO_SUIT: List[str] = ["suit"]
 
 DJANGO_APPS: List[str] = [
     "django.contrib.admin",
@@ -58,7 +56,7 @@ ROOT_URLCONF = "prontolista.urls"
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
-        "DIRS": [],
+        "DIRS": [os.path.join(BASE_DIR, "templates")],
         "APP_DIRS": True,
         "OPTIONS": {
             "context_processors": [
