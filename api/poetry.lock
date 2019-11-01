@@ -107,6 +107,14 @@ typing-extensions = "*"
 
 [[package]]
 category = "main"
+description = "Modern theme for Django admin interface."
+name = "django-suit"
+optional = false
+python-versions = "*"
+version = "0.2.28"
+
+[[package]]
+category = "main"
 description = "A feature flipper for Django."
 name = "django-waffle"
 optional = false
@@ -413,7 +421,7 @@ version = "0.6.0"
 more-itertools = "*"
 
 [metadata]
-content-hash = "9c1be6fae7c1ee803c74c566958803a62dce5785c2c928b9a5ccfe25714b7ffc"
+content-hash = "cdec0b36c139c36378553bfb78dfb3e2fb07ff1d2b700d27f2fcfdd5f1345005"
 python-versions = "^3.7"
 
 [metadata.hashes]
@@ -428,6 +436,7 @@ coverage = ["08907593569fe59baca0bf152c43f3863201efb6113ecb38ce7e97ce339805a6", 
 django = ["4025317ca01f75fc79250ff7262a06d8ba97cd4f82e93394b2a0a6a4a925caeb", "a8ca1033acac9f33995eb2209a6bf18a4681c3e5269a878e9a7e0b7384ed1ca3"]
 django-extensions = ["526d84b16ee180e45e2305f19d3e01ff3f9f513133839c0b4478b97310ade82a", "a78105d5a5e1c3ef44fbe41bc5a19102bda64dbad05515bf791ac6d5d2499ebf"]
 django-stubs = ["c0515576de547bb33057e24d1b0294d10a68e55150ee32fc964f1082192ab012", "ca565958a66c0772a11bf95e415d0bcd476eb59919a7ed1a417cc93315d68809"]
+django-suit = ["256412597ac8e9461780542eebb12b37f65ff702bf23de23d07d245510c64ff2", "bacd8a079fcc08deb6efd0d7f60241e3c319526939ae1abe8ccfbc1b03e97104"]
 django-waffle = ["3e0ae529315de89c51b362c4d5a59bb0e3a026a3787c03501726f5bb7148e72e", "ee06ac29a3391f0893cfab1ed47bda65506ef136b4ceed5d1436df88bb17d02f"]
 entrypoints = ["589f874b313739ad35be6e0cd7efde2a4e9b6fea91edcc34e58ecbb8dbe56d19", "c70dd71abe5a8c85e55e12c19bd91ccfeec11a6e99044204511f9ed547d48451"]
 flake8 = ["19241c1cbc971b9962473e4438a2ca19749a7dd002dd1a946eaba171b4114548", "8e9dfa3cecb2400b3738a42c54c3043e821682b9c840b0448c0503f781130696"]
