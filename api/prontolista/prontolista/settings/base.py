@@ -23,6 +23,10 @@ ALLOWED_HOSTS: List[str] = []
 
 # Application definition
 
+DJANGO_SUIT: List[str] = [
+    "suit",
+]
+
 DJANGO_APPS: List[str] = [
     "django.contrib.admin",
     "django.contrib.auth",
@@ -36,7 +40,7 @@ THIRD_PARTY_APPS: List[str] = ["waffle"]
 
 LOCAL_APPS: List[str] = ["projects", "testcases", "testruns", "test_instances"]
 
-INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
+INSTALLED_APPS = DJANGO_SUIT + DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
