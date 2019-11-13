@@ -27,7 +27,8 @@ class TestCaseModelTest(TestCase):
 
     def test_model_should_get_name_as_string_representation(self):
         project = baker.make(Project)
-        expected_name = "Breadcrumb : click breadcrumb link"
-        actual = TestCaseModel.objects.create(name=expected_name, project=project)
+        test_case_name = "Breadcrumb : click breadcrumb link"
+        expected_name = f"{project.name}: {test_case_name}"
+        actual = TestCaseModel.objects.create(name=test_case_name, project=project)
 
         assert actual.__str__() == expected_name
