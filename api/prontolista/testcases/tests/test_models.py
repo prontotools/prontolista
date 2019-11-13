@@ -7,21 +7,17 @@ from projects.models import Project
 
 
 class TestCaseModelTest(TestCase):
-    def test_model_should_have_name(self):
+    def test_model_should_have_defined_fields(self):
         project = baker.make(Project)
         expected_name = "Breadcrumb : click breadcrumb link"
-        actual = TestCaseModel.objects.create(name=expected_name, project=project)
+        expected_description = "This is a description!"
+        actual = TestCaseModel.objects.create(
+            name=expected_name, project=project, description=expected_description
+        )
 
         assert actual.name == expected_name
-        assert actual.created
-        assert actual.modified
-
-    def test_model_should_have_foreign_key_to_project(self):
-        expected_project_name = "Gravity Form test"
-        project = baker.make(Project, name=expected_project_name)
-        actual = TestCaseModel.objects.create(name="breadcrumb test", project=project)
-
-        assert actual.project.name == expected_project_name
+        assert actual.project.name == project.name
+        assert actual.description == expected_description
         assert actual.created
         assert actual.modified
 

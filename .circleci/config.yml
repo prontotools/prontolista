@@ -33,7 +33,8 @@ jobs:
       - run:
           name: Run Type Checker
           command: |
-            poetry run mypy prontolista
+            cd prontolista/
+            poetry run mypy --config-file=../mypy.ini .
       - run:
           name: Run Tests
           command: |

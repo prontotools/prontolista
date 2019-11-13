@@ -10,7 +10,7 @@ class TestInstanceInline(admin.TabularInline):
 
 @admin.register(TestRun)
 class TestRunAdmin(admin.ModelAdmin):
-    list_display = ("id", "name", "project")
+    list_display = ("name", "project")
     list_filter = ("project__name",)
     search_fields = ("name",)
     inlines = [TestInstanceInline]
