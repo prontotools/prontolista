@@ -9,11 +9,13 @@ from testruns.models import TestRun
 
 
 class TestInstanceTest(TestCase):
-    def setUp(self):
-        self.testcase = baker.make(TestCaseModel)
-        self.testrun = baker.make(TestRun)
-        self.actual = TestInstance.objects.create(
-            testcase=self.testcase, testrun=self.testrun, status="passed"
+    @classmethod
+    def setUpTestData(cls):
+        cls.status = "passed"
+        cls.testcase = baker.make(TestCaseModel)
+        cls.testrun = baker.make(TestRun)
+        cls.actual = TestInstance.objects.create(
+            testcase=cls.testcase, testrun=cls.testrun, status=cls.status
         )
 
     def test_model_should_have_defined_fields(self):
@@ -23,7 +25,7 @@ class TestInstanceTest(TestCase):
         assert self.actual.testcase.name == self.testcase.name
         assert self.actual.testrun.name == self.testrun.name
         assert self.actual.assignees.all().first() == user
-        assert self.actual.status == "passed"
+        assert self.actual.status == self.status
         assert self.actual.created
         assert self.actual.modified
 
