@@ -9,21 +9,26 @@ from testruns.models import TestRun
 
 
 class TestInstanceTest(TestCase):
-    def test_model_should_have_defined_fields(self):
-        testcase = baker.make(TestCaseModel)
-        testrun = baker.make(TestRun)
-        actual = TestInstance.objects.create(
-            testcase=testcase, testrun=testrun, status="passed"
+    def setUp(self):
+        self.testcase = baker.make(TestCaseModel)
+        self.testrun = baker.make(TestRun)
+        self.actual = TestInstance.objects.create(
+            testcase=self.testcase, testrun=self.testrun, status="passed"
         )
-        user = baker.make(User)
-        actual.assignees.add(user)
 
-        assert actual.testcase.name == testcase.name
-        assert actual.testrun.name == testrun.name
-        assert actual.assignees.all().first() == user
-        assert actual.status == "passed"
-        assert actual.created
-        assert actual.modified
+    def test_model_should_have_defined_fields(self):
+        user = baker.make(User)
+        self.actual.assignees.add(user)
+
+        assert self.actual.testcase.name == self.testcase.name
+        assert self.actual.testrun.name == self.testrun.name
+        assert self.actual.assignees.all().first() == user
+        assert self.actual.status == "passed"
+        assert self.actual.created
+        assert self.actual.modified
+
+    def test_model_should_have_string_representation(self):
+        assert self.actual.__str__() == self.testcase.name
 
 
 class CommentTest(TestCase):

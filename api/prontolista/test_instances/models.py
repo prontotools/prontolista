@@ -16,6 +16,9 @@ class TestInstance(TimeStampedModel):
     STATUSES = (("passed", "Passed"), ("blocked", "Blocked"), ("failed", "Failed"))
     status = models.CharField(null=True, blank=True, max_length=300, choices=STATUSES)
 
+    def __str__(self):
+        return self.testcase.name
+
 
 class Comment(TimeStampedModel):
     test_instance = models.ForeignKey(TestInstance, on_delete=models.CASCADE)
