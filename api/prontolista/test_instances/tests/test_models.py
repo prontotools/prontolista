@@ -1,3 +1,4 @@
+from django.contrib.auth.models import User
 from django.test import TestCase
 
 from model_bakery import baker
@@ -12,12 +13,14 @@ class TestInstanceTest(TestCase):
         testcase = baker.make(TestCaseModel)
         testrun = baker.make(TestRun)
         actual = TestInstance.objects.create(
-            testcase=testcase, testrun=testrun, assignee="zkan", status="passed"
+            testcase=testcase, testrun=testrun, status="passed"
         )
+        user = baker.make(User)
+        actual.assignees.add(user)
 
         assert actual.testcase.name == testcase.name
         assert actual.testrun.name == testrun.name
-        assert actual.assignee == "zkan"
+        assert actual.assignees.all().first() == user
         assert actual.status == "passed"
         assert actual.created
         assert actual.modified
