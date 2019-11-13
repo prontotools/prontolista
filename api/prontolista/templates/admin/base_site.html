@@ -12,7 +12,7 @@
     // Credit: https://yuji.wordpress.com/2014/05/05/select2-autocomplete-in-the-django-suit-admin/
     $(() => {
       select2Options = {
-        'width': 'resolve',
+        'width': '220px',
       }
       $('#content-main select:not(.select2-offscreen)').select2(select2Options)
       Suit.after_inline.register('fire_up_select2', (inline_prefix, row) => {
