@@ -15,6 +15,6 @@ class TestInstanceAdminTest(TestCase):
         assert TestInstanceAdmin.list_display == expected
 
     def test_admin_should_set_list_filter(self):
-        expected = ("testrun",)
+        expected = ("assignees", "testrun")
 
         assert TestInstanceAdmin.list_filter == expected

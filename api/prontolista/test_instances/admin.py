@@ -6,4 +6,4 @@ from .models import TestInstance
 @admin.register(TestInstance)
 class TestInstanceAdmin(admin.ModelAdmin):
     list_display = ("testcase", "testrun", "status")
-    list_filter = ("testrun",)
+    list_filter = ("assignees", "testrun")
