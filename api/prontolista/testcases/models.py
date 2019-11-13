@@ -11,4 +11,4 @@ class TestCase(TimeStampedModel):
     description = models.TextField(null=True, blank=True)
 
     def __str__(self):
-        return self.name
+        return f"{self.project}: {self.name}"
