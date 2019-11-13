@@ -46,9 +46,8 @@ context('Test Instances', () => {
   })
 
   it('should be able to create a new test instance', () => {
-    cy.get(
-      ':nth-child(4) > .table-overview > tbody > tr > :nth-child(3) > .addlink',
-    ).click()
+    cy.get(':nth-child(4) > .table-overview > tbody > :nth-child(2) > :nth-child(3) > .addlink')
+      .click()
     cy.get('#select2-id_testcase-container').click()
     cy.contains('li', testcase_name).click()
     cy.get('#select2-id_testrun-container').click()
@@ -68,9 +67,8 @@ context('Test Instances', () => {
   })
 
   it('should be able to edit a test instance', () => {
-    cy.get(
-      ':nth-child(4) > .table-overview > tbody > tr > :nth-child(3) > .addlink',
-    ).click()
+    cy.get(':nth-child(4) > .table-overview > tbody > :nth-child(2) > :nth-child(3) > .addlink')
+      .click()
     cy.get('#select2-id_testcase-container').click()
     cy.contains('li', testcase_name).click()
     cy.get('#select2-id_testrun-container').click()
@@ -92,9 +90,8 @@ context('Test Instances', () => {
   })
 
   it('should be able to filter a test instance by assignee', () => {
-    cy.get(
-      ':nth-child(4) > .table-overview > tbody > tr > :nth-child(3) > .addlink',
-    ).click()
+    cy.get(':nth-child(4) > .table-overview > tbody > :nth-child(2) > :nth-child(3) > .addlink')
+      .click()
     cy.get('#select2-id_testcase-container').click()
     cy.contains('li', testcase_name).click()
     cy.get('#select2-id_testrun-container').click()
