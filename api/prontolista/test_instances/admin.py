@@ -5,6 +5,5 @@ from .models import TestInstance
 
 @admin.register(TestInstance)
 class TestInstanceAdmin(admin.ModelAdmin):
-    list_display = ("testcase", "testrun", "assignee", "status")
-    search_fields = ("assignee",)
+    list_display = ("testcase", "testrun", "status")
     list_filter = ("testrun",)
